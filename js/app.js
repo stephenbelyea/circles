@@ -7,13 +7,14 @@ jQuery(document).ready( function ($) {
 
 	var circ = {
 	  all : 3,
-	  base : (page.w * 0.15),
+	  base : (page.w * 0.175),
 	  setSizePos : function (c) {
-	    var rand = Math.random() * (1.15 - 0.85) + 0.85,
-	        size = circ.base * rand,
-	        posX = (Math.random() * page.w) - circ.base*0.5,
-	        posY = (Math.random() * page.h) - circ.base*0.5,
-	        zind = Math.floor(Math.random() * 999);
+	    var base = circ.base * 0.5,
+	    		rand = Math.random() * (1.25 - 0.85) + 0.85,
+	        size = Math.floor(circ.base * rand),
+	        posX = Math.floor(Math.random() * page.w - base),
+	        posY = Math.floor(Math.random() * page.h - base),
+	        zind = Math.floor(Math.random() * 99);
 	    $(c).css({
 	      'width' 		: size,
 	      'height'		: size,
@@ -25,9 +26,10 @@ jQuery(document).ready( function ($) {
 	    circ.setPath(c);
 	  },
 	  setPath : function (c) {
-	    var posX = (Math.random() * page.w) - circ.base*0.5,
-	        posY = (Math.random() * page.h) - circ.base*0.5,
-	        time = (Math.random() * 4000) + 1000,
+	    var base = circ.base * 0.5,
+	    		posX = Math.floor(Math.random() * page.w - base),
+	        posY = Math.floor(Math.random() * page.h - base),
+	        time = Math.floor(Math.random() * 4000 + 1000),
 	        curve = ".05, .02, .47, .95";
 	    $(c).transition({
 		      x : posX+'px',
@@ -43,12 +45,13 @@ jQuery(document).ready( function ($) {
 	  buildSet : function () {
 	    for ( var i = 0; i < circ.all; i++ ) {
 	      var c = document.createElement('span');
-	      if ( Math.random() > 0.66 ) {
+	      if ( Math.random() > 0.6 ) {
 	        c.className = "circle red";
 	      }
 	      else {
 	        c.className = "circle black";
 	      }
+	      c.innerHTML = "<span></span>";
 	      page.c.appendChild(c);
 	      circ.setSizePos(c);
 	      circ.doAnimate(c);
