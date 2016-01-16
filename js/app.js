@@ -44,8 +44,8 @@ jQuery(document).ready( function ($) {
 	  },
 	  buildSet : function () {
 	    for ( var i = 0; i < circ.all; i++ ) {
-	      var c = document.createElement('span');
-	      if ( Math.random() > 0.6 ) {
+	      var c = document.createElement('div');
+	      if ( Math.random() > 0.625 ) {
 	        c.className = "circle red";
 	      }
 	      else {
