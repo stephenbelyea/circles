@@ -85,7 +85,6 @@ jQuery(document).ready( function ($) {
 	    btn.stop.removeAttribute('disabled');
 	    btn.more.removeAttribute('disabled');
 	    btn.less.removeAttribute('disabled');
-	    noSleep.enable();
 	  },
 	  doStop : function (e) {
 	    circ.destroyAll();
@@ -93,7 +92,6 @@ jQuery(document).ready( function ($) {
 	    btn.more.setAttribute('disabled', true);
 	    btn.less.setAttribute('disabled', true);
 	    btn.start.removeAttribute('disabled');
-	    noSleep.disable();
 	  },
 	  doMore : function (e) {
 	    circ.buildSet();
