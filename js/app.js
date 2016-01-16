@@ -12,12 +12,12 @@ jQuery(document).ready( function ($) {
 	    var rand = Math.random() * (1.15 - 0.85) + 0.85,
 	        size = circ.base * rand,
 	        posX = (Math.random() * page.w) - circ.base*0.5,
-	        posY = (Math.random() * page.h) - circ.base*0.5;
-	        //zind = Math.floor(Math.random() * 999);
+	        posY = (Math.random() * page.h) - circ.base*0.5,
+	        zind = Math.floor(Math.random() * 999);
 	    $(c).css({
 	      'width' 		: size,
 	      'height'		: size,
-	      //'z-index'		: zind,
+	      'z-index'		: zind,
 	      'transform' : 'translate('+posX+'px,'+posY+'px)'
 	    });
 	  },
