@@ -13,11 +13,12 @@ jQuery(document).ready( function ($) {
 	        size = circ.base * rand,
 	        posX = (Math.random() * page.w) - circ.base*0.5,
 	        posY = (Math.random() * page.h) - circ.base*0.5;
+	        //zind = Math.floor(Math.random() * 999);
 	    $(c).css({
-	      'width' : size,
-	      'height': size,
-	      'left'  : posX,
-	      'top'   : posY
+	      'width' 		: size,
+	      'height'		: size,
+	      //'z-index'		: zind,
+	      'transform' : 'translate('+posX+'px,'+posY+'px)'
 	    });
 	  },
 	  doAnimate : function (c) {
@@ -26,13 +27,18 @@ jQuery(document).ready( function ($) {
 	  setPath : function (c) {
 	    var posX = (Math.random() * page.w) - circ.base*0.5,
 	        posY = (Math.random() * page.h) - circ.base*0.5,
-	        time = (Math.random() * 4000) + 1000;
-	    $(c).animate({
-	      'left' : posX,
-	      'top' : posY
-	    }, time, 'swing', function (){
-	      circ.doAnimate(c);
-	    });
+	        time = (Math.random() * 4000) + 1000,
+	        curve = ".05, .02, .47, .95";
+	    $(c).transition({
+		      x : posX+'px',
+		      y : posY+'px'
+		    }, 
+		    time, 
+		    'cubic-bezier('+curve+')', 
+		    function (){
+		      circ.doAnimate(c);
+		    }
+		  );
 	  },
 	  buildSet : function () {
 	    for ( var i = 0; i < circ.all; i++ ) {
