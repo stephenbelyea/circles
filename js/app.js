@@ -85,6 +85,7 @@ jQuery(document).ready( function ($) {
 	    btn.stop.removeAttribute('disabled');
 	    btn.more.removeAttribute('disabled');
 	    btn.less.removeAttribute('disabled');
+	    noSleep.enable();
 	  },
 	  doStop : function (e) {
 	    circ.destroyAll();
@@ -92,6 +93,7 @@ jQuery(document).ready( function ($) {
 	    btn.more.setAttribute('disabled', true);
 	    btn.less.setAttribute('disabled', true);
 	    btn.start.removeAttribute('disabled');
+	    noSleep.disable();
 	  },
 	  doMore : function (e) {
 	    circ.buildSet();
@@ -106,3 +108,12 @@ jQuery(document).ready( function ($) {
 	btn.more.onclick = btn.doMore;
 	btn.less.onclick = btn.doLess;
 });
+
+// NoSleep library.
+// https://github.com/richtr/NoSleep.js
+var noSleep = new NoSleep();
+function enableNoSleep() {
+  noSleep.enable();
+  document.removeEventListener('touchstart', enableNoSleep, false);
+}
+document.addEventListener('touchstart', enableNoSleep, false);
