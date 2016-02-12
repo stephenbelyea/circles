@@ -2,8 +2,10 @@ jQuery(document).ready( function ($) {
 	var page = {
 	  w : $(window).width(),
 	  h : $(window).height(),
-	  c : document.getElementById('circles')
-	}
+	  c : document.getElementById('circles'),
+		a : document.getElementById('audio'),
+		p : document.getElementById('pop')
+	};
 
 	var circ = {
 	  all : 3,
@@ -34,9 +36,9 @@ jQuery(document).ready( function ($) {
 	    $(c).transition({
 		      x : posX+'px',
 		      y : posY+'px'
-		    }, 
-		    time, 
-		    'cubic-bezier('+curve+')', 
+		    },
+		    time,
+		    'cubic-bezier('+curve+')',
 		    function (){
 		      circ.doAnimate(c);
 		    }
@@ -56,18 +58,25 @@ jQuery(document).ready( function ($) {
 	      circ.setSizePos(c);
 	      circ.doAnimate(c);
 	      c.className += " go";
-	      c.onclick = function (e) {
-	      	$(this).toggleClass('tag');
-	      }
+				circ.setupClick(c);
 	    }
 	  },
+		setupClick: function(c) {
+			c.onclick = function (e) {
+				$(this).toggleClass('tag');
+				// Bubble pop audio isn't working.
+				//page.p.pause();
+				// page.p.currentTime = 0;
+				// page.p.play();
+			};
+		},
 	  destroySet : function () {
 	    var circs = $('.circle');
 	    if ( circ.all >= circs.length ) {
 	      btn.doStop();
 	    }
 	    else {
-	      var circSet = circs.slice(0, circ.all); 
+	      var circSet = circs.slice(0, circ.all);
 	      circSet.removeClass('go');
 	      setTimeout( function () {
 	        circSet.remove();
@@ -94,6 +103,7 @@ jQuery(document).ready( function ($) {
 	    btn.stop.removeAttribute('disabled');
 	    btn.more.removeAttribute('disabled');
 	    btn.less.removeAttribute('disabled');
+			page.a.play();
 	  },
 	  doStop : function (e) {
 	    circ.destroyAll();
@@ -101,6 +111,8 @@ jQuery(document).ready( function ($) {
 	    btn.more.setAttribute('disabled', true);
 	    btn.less.setAttribute('disabled', true);
 	    btn.start.removeAttribute('disabled');
+			page.a.pause();
+			page.a.currentTime = 0;
 	  },
 	  doMore : function (e) {
 	    circ.buildSet();
@@ -108,7 +120,7 @@ jQuery(document).ready( function ($) {
 	  doLess : function (e) {
 	    circ.destroySet();
 	  }
-	}
+	};
 
 	btn.start.onclick = btn.doStart;
 	btn.stop.onclick = btn.doStop;
