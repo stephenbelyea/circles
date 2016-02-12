@@ -64,10 +64,9 @@ jQuery(document).ready( function ($) {
 		setupClick: function(c) {
 			c.onclick = function (e) {
 				$(this).toggleClass('tag');
-				// Bubble pop audio isn't working.
-				//page.p.pause();
-				// page.p.currentTime = 0;
-				// page.p.play();
+				page.p.pause();
+				page.p.currentTime = 0;
+				page.p.play();
 			};
 		},
 	  destroySet : function () {
