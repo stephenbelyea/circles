@@ -29,9 +29,9 @@ jQuery(document).ready( function ($) {
 	  },
 	  setPath : function (c) {
 	    var base = circ.base * 0.5,
-	    		posX = Math.floor(Math.random() * page.w - base),
-	        posY = Math.floor(Math.random() * page.h - base),
-	        time = Math.floor(Math.random() * 4000 + 1000),
+	    		posX = Math.floor(Math.random() * (page.w * 0.75) - base),
+	        posY = Math.floor(Math.random() * (page.h * 0.75) - base),
+	        time = Math.floor(Math.random() * 3000 + 1000),
 	        curve = ".05, .02, .47, .95";
 	    $(c).transition({
 		      x : posX+'px',
