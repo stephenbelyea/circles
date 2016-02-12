@@ -3,8 +3,7 @@ jQuery(document).ready( function ($) {
 	  w : $(window).width(),
 	  h : $(window).height(),
 	  c : document.getElementById('circles'),
-		a : document.getElementById('audio'),
-		p : document.getElementById('pop')
+		a : document.getElementById('audio')
 	};
 
 	var circ = {
@@ -64,9 +63,7 @@ jQuery(document).ready( function ($) {
 		setupClick: function(c) {
 			c.onclick = function (e) {
 				$(this).toggleClass('tag');
-				page.p.pause();
-				page.p.currentTime = 0;
-				page.p.play();
+				aud.doSinglePop();
 			};
 		},
 	  destroySet : function () {
@@ -91,6 +88,21 @@ jQuery(document).ready( function ($) {
 	  }
 	};
 
+	var aud = {
+		ps : document.getElementById('pop'),
+		pt : document.getElementById('popx'),
+		doSinglePop : function () {
+			aud.ps.pause();
+			aud.ps.currentTime = 0;
+			aud.ps.play();
+		},
+		doTriplePop : function () {
+			aud.pt.pause();
+			aud.pt.currentTime = 0;
+			aud.pt.play();
+		}
+	};
+
 	var btn = {
 	  start : document.getElementById('start'),
 	  stop : document.getElementById('stop'),
@@ -103,6 +115,7 @@ jQuery(document).ready( function ($) {
 	    btn.more.removeAttribute('disabled');
 	    btn.less.removeAttribute('disabled');
 			page.a.play();
+			aud.doTriplePop();
 	  },
 	  doStop : function (e) {
 	    circ.destroyAll();
@@ -112,12 +125,15 @@ jQuery(document).ready( function ($) {
 	    btn.start.removeAttribute('disabled');
 			page.a.pause();
 			page.a.currentTime = 0;
+			aud.doTriplePop();
 	  },
 	  doMore : function (e) {
 	    circ.buildSet();
+			aud.doTriplePop();
 	  },
 	  doLess : function (e) {
 	    circ.destroySet();
+			aud.doTriplePop();
 	  }
 	};
 
